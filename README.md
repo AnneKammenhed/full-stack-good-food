@@ -30,7 +30,7 @@ Heroku
 
 <h2>Credits</h2>
 
-This site is built on the Code Institute student template for Gitpod with preinstalled tools to get started. 
+This site is built on the Code Institute student template for Gitpod with preinstalled tools to get started. I reused the templates from the Django Blog walkthrough project for the html in this project.  
 
 Django
 
