@@ -24,21 +24,29 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light dark-bg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Home</a>
+            <a class="navbar-brand text-white" href="{% url 'home' %}">Welcome to eat Good Food!</a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">how many?</li>
-                    <li class="nav-item">when?</li>
-                    <li class="nav-item">name?</li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Come Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Book a table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Our menu</a>
+                    </li>
                 </ul>
                 <span class="navbar-text text-muted">
-                    let's eat!
+                    
                 </span>
             </div>
         </div>
@@ -53,9 +61,13 @@
     <!-- Footer -->
     <footer class="footer mt-auto py-3 dark-bg">
         <p class="m-0 text-center text-white">Made by Good Food</p>
-        <p class="m-0 text-center text-white">Follow us:<i class="fab fa-instagram-square ms-3"></i></p>
-        <p class="m-0 text-center text-white">Rate us: <i class="fab fa-tripadvisor-square ms-3"></i></p>
+        <p class="m-0 text-center text-white">Follow us: <i class="fab fa-instagram-square ms-3"></i></p>
+        <p class="m-0 text-center text-white">Rate us:<i class="fa-solid fa-utensils ms-3"></i></p>
     </footer>
+
+    <!--font awesome scripts-->
+
+    <script src="https://kit.fontawesome.com/93a6038a78.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
