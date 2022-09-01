@@ -5,10 +5,26 @@
 <section id="hero-outer">
     <div id="hero-image">
         <div id="cover-text">
-            <h2>Come and eat at our place!</h2>
-            <h3>Lots of good food!</h3>
+            <h2 class="text-white">Book Your table here:</h2>
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Booking Column -->
+                    <div class="col-12 mt-3 left">
+                        <div class="row">
+                            <form method="post" >
+                                {{ booking_list }}
+                                    <label for="number_of_guests">How many guests?</label>
+                                    <input id="number_of_guests" type="number" value="{{ number_of_guests }}"> 
+                                    <input type="submit" value="OK">
+                               
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+   
 </section>
 
 {% endblock %}

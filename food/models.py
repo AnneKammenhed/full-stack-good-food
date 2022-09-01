@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.forms import ModelForm
 from cloudinary.models import CloudinaryField
 
 
 # Model to book a table
 
-class Booking(models.Model):
+class Booking(ModelForm):
     
     booking_id = models.CharField(
         max_length=100,
@@ -15,12 +16,7 @@ class Booking(models.Model):
     )
     number_of_guests = models.IntegerField()
 
-    date = models.DateField(
-        verbose_name='Date',
-        blank=True, null=True,
-    ) 
-
-    time = models.DateTimeField(
+    booking_time = models.DateTimeField(
         verbose_name='Time',
         blank=True, null=True,
     )
@@ -45,4 +41,4 @@ class Booking(models.Model):
     )
 
     def __str__(self):
-        return f'{self.number_of_guests} guests at {self.time}{self.date}'
+        return self
