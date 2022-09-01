@@ -3,8 +3,8 @@ from django.views import generic
 from .models import Booking
 
 
-# Create your views here:
-# view to se the Bookings model
+# view the Bookings
 class BookingList(generic.ListView):
     model = Booking
-    template_name = 'index.html'
+    queryset = Booking.objects.all()
+    template_name = "booking.html"

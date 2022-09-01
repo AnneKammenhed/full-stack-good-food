@@ -9,6 +9,18 @@
         <div class="col-12 mt-3 left">
             <div class="row">
                 <h1>book here:</h1>
+                {{ bookings }}
+
+                <table>
+                    {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.number_of_guests }}</td>
+                            <td>{{ booking.date }}</td>
+                            <td>{{ booking.time }}</td>
+                            <td>{{ booking.allergies }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </div>
