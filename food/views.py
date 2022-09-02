@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.views import generic
-from django.forms import ModelForm
 from .models import Booking
 
 
 # view the form for bookings
-class BookingList(generic.ListView):
-    form = Booking
-    template_name = "index.html"
+# class BookingList(generic.ListView):
+#    model = Booking
 
+#        template_name = "index.html"
+
+# BookingList is missing a QuerySet. Define BookingList.model, BookingList.queryset, or override BookingList.get_queryset().
 
 
 #    if request.method == 'POST':
