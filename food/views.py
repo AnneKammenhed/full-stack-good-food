@@ -2,21 +2,10 @@ from django.shortcuts import render
 from django.views import generic
 from .models import Booking
 
-
-# view the form for bookings
-# class BookingList(generic.ListView):
-#    model = Booking
-
-#        template_name = "index.html"
-
-# BookingList is missing a QuerySet. Define BookingList.model, BookingList.queryset, or override BookingList.get_queryset().
+# view to see the form
 
 
-#    if request.method == 'POST':
-#        form = Booking(request.POST)
-#        if form.is_valid():
-#           form.save()
-#    else:
-#        form = Booking()
+# view to book a table
 
-#    Return render (request, "index.html", {'form':form})
+
+# view to delete a booking (user login required)

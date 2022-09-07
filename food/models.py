@@ -1,81 +1,95 @@
 from django.db import models
-from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 
-
-# values for what days Good Food is open, three seatings:
-OPENING_DAYS = (
-    (0, "Tuesday"),
-    (1, "Wednesday"),
-    (2, "Thursday"),
-    (3, "Friday"),
-    (4, "Saturday"),   
-)
-
-SEATING_TIMES = (
-    (0, "17.00-18.30"),
-    (1, "18.30-20.00"),
-    (2, "20.00-21.30"),
-)
-
-# online booking allows for a maximum of eight guests
-NUMBER_OF_GUESTS = (
-    (0, "One guest"),
-    (1, "Two guests"),
-    (2, "Three guests"),
-    (3, "Four guests"),
-    (4, "Five guests"),
-    (5, "Six guests"),
-    (6, "Seven guests"),
-    (7, "Eight guests"),
-)
 
 # Model to book a table = available times+number of guests+guest details
 class Booking(models.Model):
-    
-    booking_day = models.IntegerField(
-        choices=OPENING_DAYS,
-        default=0,
+    # values for what days Good Food is open, three seatings:
+    TUESDAY = 'Tue'
+    WEDNESDAY = 'Wed'
+    THURSDAY = 'Thu'
+    FRIDAY = 'Fri'
+    SATURDAY = 'Sat'
+    OPENING_DAYS_CHOICES = [
+        (TUESDAY, 'Tuesday'),
+        (WEDNESDAY, 'Wednesday'),
+        (THURSDAY, 'Thursday'),
+        (FRIDAY, 'Friday'),
+        (SATURDAY, 'Saturday'),   
+    ]
+
+    DINNER1 = '17.00-18.30'
+    DINNER2 = '18.30-20.00'
+    DINNER3 = '20.00-21.30'
+    SEATING_TIMES_CHOICES = [
+        (DINNER1, '17.00-18.30'),
+        (DINNER2, '18.30-20.00'),
+        (DINNER3, '20.00-21.30'),
+    ]
+
+    # online booking allows for a maximum of eight guests
+    ONE = 'One guest'
+    TWO = 'Two guests'
+    THREE = 'Three guests'
+    FOUR = 'Four guests'
+    FIVE = 'Five guests'
+    SIX = 'Six guests'
+    SEVEN = 'Seven guests'
+    EIGHT = 'Eight guests'
+    NUMBER_OF_GUESTS = [
+        (ONE, 'One guest'),
+        (TWO, 'Two guests'),
+        (THREE, 'Three guests'),
+        (FOUR, 'Four guests'),
+        (FIVE, 'Five guests'),
+        (SIX, 'Six guests'),
+        (SEVEN, 'Seven guests'),
+        (EIGHT, 'Eight guests'),
+    ]
+
+    booking_day = models.CharField(
+        max_length=10,
+        choices=OPENING_DAYS_CHOICES,
+        default=TUESDAY,
     )
     
-    booking_time = models.IntegerField(
-        choices=SEATING_TIMES,
-        default=0,
+    booking_time = models.CharField(
+        max_length=20,
+        choices=SEATING_TIMES_CHOICES,
+        default=DINNER1,
     )
 
-    number_of_guests = models.IntegerField(
+    number_of_guests = models.CharField(
+        max_length=20,
         choices=NUMBER_OF_GUESTS, 
-        default=0,
+        default=TWO,
     )
 
-    guest = models.TextField(
-        max_length=50, 
-        verbose_name='Guest',
-        blank=True,
-    )
-    
-    guest_email = models.EmailField(
-        verbose_name='Email', 
-        blank=True,
-    )
-    
     allergies = models.TextField(
         max_length=100, 
         verbose_name='Allergies',
         blank=True,
     )
 
-    # class Meta:
-    #     ordering = ('booking_day', 'booking_time')
-    #     unique_together = ('guest', 'booking_day', 'booking_time')
+    guest_name = models.TextField(
+        max_length=25,
+        verbose_name='Guest',
+        blank=True,
+    )
+
+    guest_email = models.EmailField(
+        verbose_name='Email', 
+        blank=False,
+    )
+
+    guest_phone = models.TextField(
+        max_length=25,
+        verbose_name='Phone',
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ('booking_day', 'booking_time')
+        unique_together = ('guest_email', 'booking_day', 'booking_time')
 
     def __str__(self):
-        return f'{self.guest} for {self.number_of_guests} at {self.booking_day}{self.booking_time}'
-
-    # funtion to show vacant times grouped per day
-    # def show_vacancy(available_times):
-    #     availability = {}
-    #    for vacant in available_times:
-    #        vacant_day, vacant_time = vacant[0], vacant[1]
-    #        availability[vacant_day] = availability.get(vacant_day, []) + [vacant_time]
-    #    return availability
+        return f'{self.guest_name} for {self.number_of_guests} on {self.booking_day} at {self.booking_time}'
