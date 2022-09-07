@@ -1,6 +1,29 @@
 from django.db import models
 
 
+# Model for the guest contact info
+class Guest(models.Model):
+    guest_name = models.CharField(
+        max_length=25,
+        verbose_name='Guest',
+        blank=True,
+    )
+
+    guest_email = models.EmailField(
+        verbose_name='Email', 
+        blank=False,
+    )
+
+    guest_phone = models.CharField(
+        max_length=25,
+        verbose_name='Phone',
+        blank=True,
+    )
+
+    def __str__(self):
+        return f'{self.guest_name}'
+
+
 # Model to book a table = available times+number of guests+guest details
 class Booking(models.Model):
     # values for what days Good Food is open, three seatings:
@@ -70,26 +93,16 @@ class Booking(models.Model):
         blank=True,
     )
 
-    guest_name = models.TextField(
-        max_length=25,
-        verbose_name='Guest',
-        blank=True,
-    )
-
-    guest_email = models.EmailField(
-        verbose_name='Email', 
-        blank=False,
-    )
-
-    guest_phone = models.TextField(
-        max_length=25,
-        verbose_name='Phone',
-        blank=True,
+    guest = models.ForeignKey(
+        Guest, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
     )
 
     class Meta:
         ordering = ('booking_day', 'booking_time')
-        unique_together = ('guest_email', 'booking_day', 'booking_time')
+        unique_together = ('guest', 'booking_day', 'booking_time')
 
     def __str__(self):
-        return f'{self.guest_name} for {self.number_of_guests} on {self.booking_day} at {self.booking_time}'
+        return f'{self.guest} for {self.number_of_guests} on {self.booking_day} at {self.booking_time}'

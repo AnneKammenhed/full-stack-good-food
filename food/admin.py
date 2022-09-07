@@ -1,9 +1,15 @@
-from django import forms
 from django.contrib import admin
-from .models import Booking
+from .models import Guest, Booking
 
 
-# add Booking model to admin panel
+# add Guest and Booking models to admin panel
+@admin.register(Guest)
+class GuestAdmin(admin.ModelAdmin):
+    
+    list_display = ('guest_name', 'guest_email', 'guest_phone')
+    search_fields = ['guest_name', 'guest_email', 'guest_phone']
+
+
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     pass
