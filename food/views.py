@@ -2,19 +2,10 @@ from django.shortcuts import render
 
 
 def home(request):
-    name = "Anne"
-    return render(
-        request, 
-        'index.html', {
-        "name": name,
-    },)
+    return render(request, 'index.html')
 
 def menu(request):
-    return render(
-        request, 
-        'menu.html',)
+    return render(request, 'menu.html')
 
 def bookings(request):
-    return render(
-        request,
-        'bookings.html',)
+    return render(request, 'bookings.html')
