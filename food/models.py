@@ -69,6 +69,11 @@ class Booking(models.Model):
         (EIGHT, 'Eight guests'),
     ]
 
+    booking_week = models.IntegerField(
+        max(1, 52),
+        default=1
+    )
+
     booking_day = models.CharField(
         max_length=10,
         choices=OPENING_DAYS_CHOICES,
@@ -80,7 +85,7 @@ class Booking(models.Model):
         choices=SEATING_TIMES_CHOICES,
         default=DINNER1,
     )
-
+    
     number_of_guests = models.CharField(
         max_length=20,
         choices=NUMBER_OF_GUESTS, 
@@ -101,7 +106,7 @@ class Booking(models.Model):
     )
 
     class Meta:
-        ordering = ('booking_day', 'booking_time')
+        ordering = ('booking_week', 'booking_day', 'booking_time')
         unique_together = ('guest', 'booking_day', 'booking_time')
 
     def __str__(self):
