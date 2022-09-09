@@ -4,6 +4,8 @@ To run a backend Python file, type `python3 app.py`, if your Python file is name
 To migrate changes to the database: `python3 manage.py migrate` (`python3 manage.py makemigrations --dry-run`)
 To run the project `python3 manage.py runserver`
 
+python3 manage.py migrate --run-syncdb
+
 <h1>Welcome to Good Food!</h1>
 
 <h2>Background</h2>
