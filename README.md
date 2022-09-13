@@ -19,6 +19,8 @@ The images will be on Cloudinary.
 
 I called the project "goodfood" in Dajngo and the manage.py app is called "food". 
 
+<h2>Development</h2>
+This app was created using three different repositories. In troubleshooting the first repository, I found that many changes to the models can make the latest changes clash with the first ones. After migrating there is still an issue of unapplied migrations. The second repository was not connected to Heroku and there I succeeded in getting a model working to book times. To be sure not to run in to the same problem as in the first repository, I also created a third repository (not connected to Heroku) where I tried to connect the model to djangos TimeDateField without any success. I also connected the User function since this is the solution that I found for the guest to be able to erase his or her booking (requirement for the project).  
 
 
 <h2>Deployment</h2>
