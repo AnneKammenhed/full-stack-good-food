@@ -2,59 +2,59 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-# tuples - open five days, three seatings
-THISWEEK = 'Current week'
-NEXTWEEK = 'Next week'
-WEEK_CHOICES = [
-    (THISWEEK, 'Next week'),
-    (NEXTWEEK, 'Next week'),
-]
-
-TUESDAY = 'Tue'
-WEDNESDAY = 'Wed'
-THURSDAY = 'Thu'
-FRIDAY = 'Fri'
-SATURDAY = 'Sat'
-OPENING_DAYS_CHOICES = [
-    (TUESDAY, 'Tuesday'),
-    (WEDNESDAY, 'Wednesday'),
-    (THURSDAY, 'Thursday'),
-    (FRIDAY, 'Friday'),
-    (SATURDAY, 'Saturday'),
-]
-
-DINNER1 = '17.00-18.30'
-DINNER2 = '18.30-20.00'
-DINNER3 = '20.00-21.30'
-SEATING_TIMES_CHOICES = [
-    (DINNER1, '17.00-18.30'),
-    (DINNER2, '18.30-20.00'),
-    (DINNER3, '20.00-21.30'),
-]
-
-# online booking allows for a maximum of eight guests
-ONE = 'One guest'
-TWO = 'Two guests'
-THREE = 'Three guests'
-FOUR = 'Four guests'
-FIVE = 'Five guests'
-SIX = 'Six guests'
-SEVEN = 'Seven guests'
-EIGHT = 'Eight guests'
-NUMBER_OF_GUESTS = [
-    (ONE, 'One guest'),
-    (TWO, 'Two guests'),
-    (THREE, 'Three guests'),
-    (FOUR, 'Four guests'),
-    (FIVE, 'Five guests'),
-    (SIX, 'Six guests'),
-    (SEVEN, 'Seven guests'),
-    (EIGHT, 'Eight guests'),
-]
-
 
 # Model to book a table
 class Booking(models.Model):
+# tuples - open five days, three seatings
+    THISWEEK = 'Current week'
+    NEXTWEEK = 'Next week'
+    WEEK_CHOICES = [
+        (THISWEEK, 'This week'),
+        (NEXTWEEK, 'Next week'),
+    ]
+
+    TUESDAY = 'Tue'
+    WEDNESDAY = 'Wed'
+    THURSDAY = 'Thu'
+    FRIDAY = 'Fri'
+    SATURDAY = 'Sat'
+    OPENING_DAYS_CHOICES = [
+        (TUESDAY, 'Tuesday'),
+        (WEDNESDAY, 'Wednesday'),
+        (THURSDAY, 'Thursday'),
+        (FRIDAY, 'Friday'),
+        (SATURDAY, 'Saturday'),
+    ]
+
+    DINNER1 = '17.00-18.30'
+    DINNER2 = '18.30-20.00'
+    DINNER3 = '20.00-21.30'
+    SEATING_TIMES_CHOICES = [
+        (DINNER1, '17.00-18.30'),
+        (DINNER2, '18.30-20.00'),
+        (DINNER3, '20.00-21.30'),
+    ]
+
+# online booking allows for a maximum of eight guests
+    ONE = 'One guest'
+    TWO = 'Two guests'
+    THREE = 'Three guests'
+    FOUR = 'Four guests'
+    FIVE = 'Five guests'
+    SIX = 'Six guests'
+    SEVEN = 'Seven guests'
+    EIGHT = 'Eight guests'
+    NUMBER_OF_GUESTS = [
+        (ONE, 'One guest'),
+        (TWO, 'Two guests'),
+        (THREE, 'Three guests'),
+        (FOUR, 'Four guests'),
+        (FIVE, 'Five guests'),
+        (SIX, 'Six guests'),
+        (SEVEN, 'Seven guests'),
+        (EIGHT, 'Eight guests'),
+    ]
+
     booking_week = models.CharField(
         max_length=12,
         choices=WEEK_CHOICES,
@@ -111,12 +111,15 @@ class Menu(models.Model):
         (MAINS, 'Main courses'),
         (DESERTS, 'Deserts'),
     ]
-    menu_item = models.CharField(max_length=200, unique=True)
+    
+    menu_item = models.CharField(max_length=100, unique=True)
+    
     course_type = models.CharField(
         max_length=12,
         choices=COURSES,
         default=MAINS,
     )
+    
     featured_image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
