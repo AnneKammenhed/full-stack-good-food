@@ -7,7 +7,7 @@ THISWEEK = 'Current week'
 NEXTWEEK = 'Next week'
 WEEK_CHOICES = [
     (THISWEEK, 'Next week'),
-    (NEXTWEEK, 'Next week'),   
+    (NEXTWEEK, 'Next week'),
 ]
 
 TUESDAY = 'Tue'
@@ -52,6 +52,7 @@ NUMBER_OF_GUESTS = [
     (EIGHT, 'Eight guests'),
 ]
 
+
 # Model to book a table
 class Booking(models.Model):
     booking_week = models.CharField(
@@ -65,7 +66,7 @@ class Booking(models.Model):
         choices=OPENING_DAYS_CHOICES,
         default=TUESDAY,
     )
-    
+
     booking_time = models.CharField(
         max_length=20,
         choices=SEATING_TIMES_CHOICES,
@@ -91,13 +92,14 @@ class Booking(models.Model):
         verbose_name='Allergies',
         blank=True,
     )
-    
+
     class Meta:
-        ordering = ('booking_day', 'booking_time')
+        ordering = ('booking_week', 'booking_day', 'booking_time')
         unique_together = ('guest', 'booking_day', 'booking_time')
 
     def __str__(self):
         return f'{self.guest} for {self.number_of_guests} on {self.booking_day} at {self.booking_time}'
+
 
 # Model for the menu page
 class Menu(models.Model):
@@ -118,4 +120,4 @@ class Menu(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
-        return self.menu_item
+        return f'{self.menu_item}'
